@@ -30,6 +30,7 @@ type (
 		Tags           TagsService
 		People         PeopleService
 		Exchanges      ExchangesService
+		Contracts      ContractsService
 	}
 )
 
@@ -75,6 +76,7 @@ func NewClient(httpClient *http.Client, opts ...ClientOptions) *Client {
 	c.Tags.httpClient = c.httpClient
 	c.People.httpClient = c.httpClient
 	c.Exchanges.httpClient = c.httpClient
+	c.Contracts.httpClient = c.httpClient
 
 	return c
 }
