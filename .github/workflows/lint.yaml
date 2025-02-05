@@ -1,7 +1,12 @@
 name: Lint 
 on:
   pull_request:
-    branches: [main]
+    branches: 
+      - main
+      - feat/fda-6009
+  push:
+    branches:
+      - feat/fda-6009
 
 jobs:
   lint:
