@@ -1,36 +1,52 @@
-run:
-  concurrency: 4
-  timeout: 3m
+linters-settings:
+  errcheck:
+    check-type-assertions: true  # Check for ignored errors in type assertions
+  cyclop:
+    max-complexity: 15  # Set the maximum cyclomatic complexity to 15
+  gocyclo:
+    min-complexity: 15  # Set the minimum cyclomatic complexity to report
+  dupl:
+    threshold: 100  # Minimum token sequence as a clone
+  goconst:
+    min-len: 2  # Minimum string length to check for constants
+    min-occurrences: 3  # Minimum occurrences of a string to check for constants
+    ignore-tests: true  # Ignore test files
+  gocritic:
+    enabled-tags:
+      - diagnostic  # Enable diagnostic checks
+      - experimental  # Enable experimental checks
+      - opinionated  # Enable opinionated checks
+      - performance  # Enable performance checks
+      - style  # Enable style checks
 
 linters:
   disable-all: true
   enable:
-    - asciicheck
-    - bodyclose
-    - durationcheck
-    - errcheck
-    - errorlint
-    - forbidigo
-    - goimports
-    - gosec
-    - gosimple
-    - govet
-    - nilerr
-    - predeclared
-    - revive
-    - staticcheck
-    - stylecheck
-    - typecheck
-    - unconvert
-    - whitespace
+    - asasalint  # Checks for common mistakes in Go code
+    - cyclop  # Checks cyclomatic complexity of functions
+    - dupl  # Detects code duplication
+    - errcheck  # Checks for unchecked errors
+    - exhaustive  # Checks for exhaustive enum handling in switch statements
+    - goconst  # Finds repeated strings that could be replaced by constants
+    - gocritic  # Provides various diagnostics and style checkers
+    - gocyclo  # Computes cyclomatic complexities of functions
+    - gosimple  # Simplifies Go code
+    - gosec  # Inspects source code for security problems
+    - govet  # Reports suspicious constructs
+    - misspell  # Finds commonly misspelled words
+    - musttag  # Ensures struct fields have tags
+    - perfsprint  # Identifies performance issues
+    - prealloc  # Finds slice declarations that could be preallocated
+    - predeclared  # Finds predeclared identifiers that are shadowed
+    - usestdlibvars  # Finds usages of custom variables that could use standard library variables
+    - whitespace  # Checks for unnecessary whitespace
+    - wsl  # Enforces whitespace rules
+    - revive  # Fast, configurable, extensible, flexible, and beautiful linter for Go
+    - bodyclose  # Checks that HTTP response bodies are closed
+    - ineffassign  # Detects when assignments to existing variables are not used
+    - nolintlint  # Ensures that //nolint comments are used correctly
+    - stylecheck  # Checks for style issues
+    - unconvert  # Detects unnecessary type conversions
 
-linters-settings:
-  forbidigo:
-    forbid:
-      - ^(fmt\.Print.*|print|println)$
-      - ^spew\.Dump$
-      - ^pp\.(P|PP|Sp|Fp)rint?$
-
-issues:
-  exclude:
-    - (.*)should have comment(.+)or be unexported|comment(.+)should be of the form
+run:
+  issues-exit-code: 1  # Exit code when issues are found

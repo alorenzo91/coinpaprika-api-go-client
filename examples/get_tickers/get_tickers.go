@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
-	paprikaClient := coinpaprika.NewClient(nil)
+	ContractsList()
+	//paprikaClient := coinpaprika.NewClient(nil)
 
-	tickers, err := paprikaClient.Tickers.List(nil)
+	/*tickers, err := paprikaClient.Tickers.List(nil)
 	if err != nil {
 		panic(err)
 	}
@@ -29,6 +30,17 @@ func main() {
 		if idx >= 2 {
 			break
 		}
+	}*/
+
+}
+
+func ContractsList() {
+	paprikaClient := coinpaprika.NewClient(nil)
+
+	contracts, err := paprikaClient.Contracts.GetTickerByContractAddress("eth-ethereum", "0xd26114cd6ee289accf82350c8d8487fedb8a0c07")
+	if err != nil {
+		panic(err)
 	}
 
+	fmt.Println("Name:", *contracts.Name)
 }

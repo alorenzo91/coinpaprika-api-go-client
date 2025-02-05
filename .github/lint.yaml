@@ -1,0 +1,29 @@
+name: Lint 
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    env:
+      GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+      GOPRIVATE: github.com/alorenzo91/
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Configure Git
+        run: git config --global url.https://$GH_ACCESS_TOKEN@github.com/alorenzo91.insteadOf https://github.com/alorenzo91
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - name: Install dependencies
+        run: go get .
+      - name: Lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      - name: Run golangci-lint
+        run: golangci-lint run --fix --timeout 10m --concurrency 4
