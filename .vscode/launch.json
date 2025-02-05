@@ -10,7 +10,6 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/examples/get_tickers",
-            //c:\code\forbes-digital-assets\.vscode"envFile": "${workspaceFolder}/.env",
             "showGlobalVariables": true,
             "cwd": "${workspaceFolder}"
         }
