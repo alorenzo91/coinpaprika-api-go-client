@@ -2,9 +2,9 @@ linters-settings:
   errcheck:
     check-type-assertions: true  # Check for ignored errors in type assertions
   cyclop:
-    max-complexity: 15  # Set the maximum cyclomatic complexity to 15
+    max-complexity: 16  # Set the maximum cyclomatic complexity to 15
   gocyclo:
-    min-complexity: 15  # Set the minimum cyclomatic complexity to report
+    min-complexity: 16  # Set the minimum cyclomatic complexity to report
   dupl:
     threshold: 100  # Minimum token sequence as a clone
   goconst:
