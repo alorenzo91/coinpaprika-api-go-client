@@ -1,7 +1,7 @@
-module github.com/coinpaprika/coinpaprika-api-go-client/v2
+module github.com/alorenzo91/coinpaprika-api-go-client
 
 require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/coinpaprika/coinpaprika-api-go-client/v2 v2.4.3
 	github.com/google/go-querystring v1.1.0
 	github.com/stretchr/testify v1.8.1
 )
