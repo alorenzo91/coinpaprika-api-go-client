@@ -4,6 +4,7 @@
 [![go-doc](https://godoc.org/github.com/coinpaprika/coinpaprika-api-go-client?status.svg)](https://godoc.org/github.com/coinpaprika/coinpaprika-api-go-client/coinpaprika)
 [![Go Report Card](https://goreportcard.com/badge/github.com/coinpaprika/coinpaprika-api-go-client)](https://goreportcard.com/report/github.com/coinpaprika/coinpaprika-api-go-client)
 
+
 ## Usage
 
 This library provides convenient way to use [coinpaprika.com API](https://api.coinpaprika.com/) in Go.
