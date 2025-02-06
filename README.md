@@ -4,7 +4,6 @@
 [![go-doc](https://godoc.org/github.com/coinpaprika/coinpaprika-api-go-client?status.svg)](https://godoc.org/github.com/coinpaprika/coinpaprika-api-go-client/coinpaprika)
 [![Go Report Card](https://goreportcard.com/badge/github.com/coinpaprika/coinpaprika-api-go-client)](https://goreportcard.com/report/github.com/coinpaprika/coinpaprika-api-go-client)
 
-
 ## Usage
 
 This library provides convenient way to use [coinpaprika.com API](https://api.coinpaprika.com/) in Go.
@@ -17,29 +16,29 @@ This library provides convenient way to use [coinpaprika.com API](https://api.co
 package main
 
 import (
-	"fmt"
+ "fmt"
 
-	"github.com/coinpaprika/coinpaprika-api-go-client/coinpaprika"
+ "github.com/coinpaprika/coinpaprika-api-go-client/coinpaprika"
 )
 
 func main() {
-	paprikaClient := coinpaprika.NewClient(nil)
+ paprikaClient := coinpaprika.NewClient(nil)
 
-	tickers, err := paprikaClient.Tickers.List(nil)
-	if err != nil {
-		panic(err)
-	}
+ tickers, err := paprikaClient.Tickers.List(nil)
+ if err != nil {
+  panic(err)
+ }
 
-	for _, t := range tickers {
-		if t.Name == nil || t.Symbol == nil || t.Rank == nil {
-			continue
-		}
+ for _, t := range tickers {
+  if t.Name == nil || t.Symbol == nil || t.Rank == nil {
+   continue
+  }
 
-		fmt.Println("Name:", *t.Name)
-		fmt.Println("Symbol:", *t.Symbol)
-		fmt.Println("Rank:", *t.Rank)
-		fmt.Println("----")
-	}
+  fmt.Println("Name:", *t.Name)
+  fmt.Println("Symbol:", *t.Symbol)
+  fmt.Println("Rank:", *t.Rank)
+  fmt.Println("----")
+ }
 }
 ```
 
@@ -51,6 +50,7 @@ paprikaClient := coinpaprika.NewClient(customClient)
 ```
 
 ## Setting API key for and enabling access to Coinpaprika Pro API
+
 Key can be obtained from [Coinpaprika API](https://coinpaprika.com/api/)
 
 ```go
@@ -61,13 +61,14 @@ paprikaClient := coinpaprika.NewClient(nil, coinpaprika.WithAPIKey("your_api_key
 
 Check out the [`./examples`](./examples) directory.
 
-
 ## Implementation status
 
 ### Global
+
 - [x] Get market overview data
 
 ### Coins
+
 - [x] List coins
 - [x] Get coin by ID
 - [x] Get twitter timeline for coin
@@ -78,28 +79,37 @@ Check out the [`./examples`](./examples) directory.
 - [x] Get historical OHLCV
 
 ### People
+
 - [x] Get people by ID
 
 ### Tags
+
 - [x] List tags
 - [x] Get tag by ID
 
-### Tickers 
+### Tickers
+
 - [x] Get tickers for all coins
 - [x] Get ticker information for specific coin
 - [x] Get historical tickers for specific coin
 
 ### Exchanges
+
 - [x] List exchanges
 - [x] Get exchange by ID
 - [x] List markets by exchange ID
 
 ### Search
+
 - [x] Search tool
 
 ### Price Converter
+
 - [x] Price converter
 
+### ChangeLog
+
+- [x] Get id changelog for all coins
 
 ## License
 
