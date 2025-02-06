@@ -6,6 +6,7 @@ import (
 )
 
 // ExchangesService is used to get exchanges and markets data.
+// API Documentation: https://api.coinpaprika.com/#tag/Exchanges
 type ExchangesService service
 
 // ExchangeQuote represents exchange volume data in quote currency.
@@ -79,18 +80,21 @@ type MarketsOptions struct {
 
 // List returns list of all exchanges listed on coinpaprika.
 func (s *ExchangesService) List(options *ExchangesOptions) (exchanges []*Exchange, err error) {
-	url := fmt.Sprintf("%s/exchanges", baseURL)
+	url := baseURL + "/exchanges"
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &exchanges)
+
 	return exchanges, err
 }
 
@@ -98,6 +102,7 @@ func (s *ExchangesService) List(options *ExchangesOptions) (exchanges []*Exchang
 func (s *ExchangesService) GetByID(exchangeID string, options *ExchangesOptions) (exchange *Exchange, err error) {
 	url := fmt.Sprintf("%s/exchanges/%s", baseURL, exchangeID)
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
@@ -108,6 +113,7 @@ func (s *ExchangesService) GetByID(exchangeID string, options *ExchangesOptions)
 	}
 
 	err = json.Unmarshal(body, &exchange)
+
 	return exchange, err
 }
 
@@ -115,15 +121,18 @@ func (s *ExchangesService) GetByID(exchangeID string, options *ExchangesOptions)
 func (s *ExchangesService) GetMarketsByExchangeID(exchangeID string, options *MarketsOptions) (markets []*Market, err error) {
 	url := fmt.Sprintf("%s/exchanges/%s/markets", baseURL, exchangeID)
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &markets)
+
 	return markets, err
 }

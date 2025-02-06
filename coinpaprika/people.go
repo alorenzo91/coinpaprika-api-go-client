@@ -6,6 +6,7 @@ import (
 )
 
 // PeopleService is used to get data about people.
+// API Documentation: https://api.coinpaprika.com/#tag/People
 type PeopleService service
 
 // Position represents person position with relation to specific coin.
@@ -42,5 +43,6 @@ func (s *PeopleService) GetByID(personID string) (person *Person, err error) {
 	}
 
 	err = json.Unmarshal(body, &person)
+
 	return person, err
 }

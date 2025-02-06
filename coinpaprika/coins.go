@@ -7,6 +7,7 @@ import (
 )
 
 // CoinsService is used to get coins information.
+// API Documentation: https://api.coinpaprika.com/#tag/Coins
 type CoinsService service
 
 // Parent represents coin parent information.
@@ -110,7 +111,7 @@ type HistoricalOHLCVOptions struct {
 
 // List returns list of all active coins listed on coinpaprika.
 func (s *CoinsService) List() (coins []*Coin, err error) {
-	url := fmt.Sprintf("%s/coins", baseURL)
+	url := baseURL + "/coins"
 
 	body, err := sendGET(s.httpClient, url)
 	if err != nil {
@@ -118,6 +119,7 @@ func (s *CoinsService) List() (coins []*Coin, err error) {
 	}
 
 	err = json.Unmarshal(body, &coins)
+
 	return coins, err
 }
 
@@ -131,6 +133,7 @@ func (s *CoinsService) GetByID(coinID string) (coin *Coin, err error) {
 	}
 
 	err = json.Unmarshal(body, &coin)
+
 	return coin, err
 }
 
@@ -139,11 +142,13 @@ func (s *CoinsService) GetTwitterTimelineByCoinID(coinID string) (timeline []*Tw
 	url := fmt.Sprintf("%s/coins/%s/twitter", baseURL, coinID)
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &timeline)
+
 	return timeline, err
 }
 
@@ -152,11 +157,13 @@ func (s *CoinsService) GetEventsByCoinID(coinID string) (events []*Event, err er
 	url := fmt.Sprintf("%s/coins/%s/events", baseURL, coinID)
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &events)
+
 	return events, err
 }
 
@@ -165,11 +172,13 @@ func (s *CoinsService) GetExchangesByCoinID(coinID string) (exchanges []*Exchang
 	url := fmt.Sprintf("%s/coins/%s/exchanges", baseURL, coinID)
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &exchanges)
+
 	return exchanges, err
 }
 
@@ -178,11 +187,13 @@ func (s *CoinsService) GetMarketsByCoinID(coinID string) (markets []*Market, err
 	url := fmt.Sprintf("%s/coins/%s/markets", baseURL, coinID)
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &markets)
+
 	return markets, err
 }
 
@@ -190,16 +201,19 @@ func (s *CoinsService) GetMarketsByCoinID(coinID string) (markets []*Market, err
 func (s *CoinsService) GetLatestOHLCVByCoinID(coinID string, options *LatestOHLCVOptions) (entries []*OHLCVEntry, err error) {
 	url := fmt.Sprintf("%s/coins/%s/ohlcv/latest", baseURL, coinID)
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &entries)
+
 	return entries, err
 }
 
@@ -207,6 +221,7 @@ func (s *CoinsService) GetLatestOHLCVByCoinID(coinID string, options *LatestOHLC
 func (s *CoinsService) GetHistoricalOHLCVByCoinID(coinID string, options *HistoricalOHLCVOptions) (entries []*OHLCVEntry, err error) {
 	url := fmt.Sprintf("%s/coins/%s/ohlcv/historical", baseURL, coinID)
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
@@ -217,5 +232,6 @@ func (s *CoinsService) GetHistoricalOHLCVByCoinID(coinID string, options *Histor
 	}
 
 	err = json.Unmarshal(body, &entries)
+
 	return entries, err
 }

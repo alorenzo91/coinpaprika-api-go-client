@@ -2,11 +2,11 @@ package coinpaprika
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // GlobalService is used to get global market overview data
+// API Documentation: https://api.coinpaprika.com/#tag/Global
 type GlobalService service
 
 // GlobalStats stores global market overview data
@@ -26,7 +26,7 @@ type GlobalStats struct {
 
 // Get gets market overview data.
 func (s *GlobalService) Get() (g *GlobalStats, err error) {
-	url := fmt.Sprintf("%s/global", baseURL)
+	url := baseURL + "/global"
 
 	body, err := sendGET(s.httpClient, url)
 	if err != nil {
@@ -34,5 +34,6 @@ func (s *GlobalService) Get() (g *GlobalStats, err error) {
 	}
 
 	err = json.Unmarshal(body, &g)
+
 	return g, err
 }

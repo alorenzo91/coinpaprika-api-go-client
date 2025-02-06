@@ -6,6 +6,7 @@ import (
 )
 
 // TagsService is used for listing and getting tags.
+// API Documentation: https://api.coinpaprika.com/#tag/Tags
 type TagsService service
 
 // TagsOptions specifies optional parameters for tags endpoint.
@@ -27,7 +28,8 @@ type Tag struct {
 
 // List returns a list of all tags.
 func (s *TagsService) List(options *TagsOptions) (tags []*Tag, err error) {
-	url := fmt.Sprintf("%s/tags", baseURL)
+	url := baseURL + "/tags"
+
 	url, err = constructURL(url, options)
 	if err != nil {
 		return nil, err
@@ -39,12 +41,14 @@ func (s *TagsService) List(options *TagsOptions) (tags []*Tag, err error) {
 	}
 
 	err = json.Unmarshal(body, &tags)
+
 	return tags, err
 }
 
 // GetByID return a tag by id.
 func (s *TagsService) GetByID(tagID string, options *TagsOptions) (tag *Tag, err error) {
 	url := fmt.Sprintf("%s/tags/%s", baseURL, tagID)
+
 	url, err = constructURL(url, options)
 	if err != nil {
 		return nil, err
@@ -56,5 +60,6 @@ func (s *TagsService) GetByID(tagID string, options *TagsOptions) (tag *Tag, err
 	}
 
 	err = json.Unmarshal(body, &tag)
+
 	return tag, err
 }

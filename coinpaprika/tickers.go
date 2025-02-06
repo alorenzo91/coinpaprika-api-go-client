@@ -7,6 +7,7 @@ import (
 )
 
 // TickersService is used to get ticker information
+// API Documentation: https://api.coinpaprika.com/#tag/Tickers
 type TickersService service
 
 // Ticker represents ticker information.
@@ -68,7 +69,8 @@ type TickersHistoricalOptions struct {
 
 // List gets ticker information for all coins listed on coinpaprika.
 func (s *TickersService) List(options *TickersOptions) (tickers []*Ticker, err error) {
-	url := fmt.Sprintf("%s/tickers", baseURL)
+	url := baseURL + "/tickers"
+
 	url, err = constructURL(url, options)
 	if err != nil {
 		return nil, err
@@ -80,12 +82,14 @@ func (s *TickersService) List(options *TickersOptions) (tickers []*Ticker, err e
 	}
 
 	err = json.Unmarshal(body, &tickers)
+
 	return tickers, err
 }
 
 // GetByID gets ticker information for specific coin by id (eg. btc-bitcoin).
 func (s *TickersService) GetByID(coinID string, options *TickersOptions) (ticker *Ticker, err error) {
 	url := fmt.Sprintf("%s/tickers/%s", baseURL, coinID)
+
 	url, err = constructURL(url, options)
 	if err != nil {
 		return nil, err
@@ -97,12 +101,14 @@ func (s *TickersService) GetByID(coinID string, options *TickersOptions) (ticker
 	}
 
 	err = json.Unmarshal(body, &ticker)
+
 	return ticker, err
 }
 
 // GetHistoricalTickersByID gets historical ticker information for specific coin by id (eg. btc-bitcoin).
 func (s *TickersService) GetHistoricalTickersByID(coinID string, options *TickersHistoricalOptions) (tickersHistorical []*TickerHistorical, err error) {
 	url := fmt.Sprintf("%s/tickers/%s/historical", baseURL, coinID)
+
 	url, err = constructURL(url, options)
 	if err != nil {
 		return nil, err
@@ -114,5 +120,6 @@ func (s *TickersService) GetHistoricalTickersByID(coinID string, options *Ticker
 	}
 
 	err = json.Unmarshal(body, &tickersHistorical)
+
 	return tickersHistorical, err
 }
