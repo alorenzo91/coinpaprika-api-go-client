@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/coinpaprika/coinpaprika-api-go-client/v2/coinpaprika"
+	"github.com/alorenzo91/coinpaprika-api-go-client/v2/coinpaprika"
 )
 
 func main() {
