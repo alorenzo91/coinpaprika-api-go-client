@@ -2,11 +2,11 @@ package coinpaprika
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 )
 
 // PriceConverterService is used for price converter requests
+// API Documentation: https://api.coinpaprika.com/#tag/Price-Converter
 type PriceConverterService service
 
 // PriceConverterResult represents a result of price converter API endpoint.
@@ -30,8 +30,9 @@ type PriceConverterOptions struct {
 
 // PriceConverter returns a price of the base currency amount expressed in the quote currency
 func (s *PriceConverterService) PriceConverter(options *PriceConverterOptions) (priceConverterResult *PriceConverterResult, err error) {
-	url := fmt.Sprintf("%s/price-converter", baseURL)
+	url := baseURL + "/price-converter"
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
@@ -42,5 +43,6 @@ func (s *PriceConverterService) PriceConverter(options *PriceConverterOptions) (
 	}
 
 	err = json.Unmarshal(body, &priceConverterResult)
+
 	return priceConverterResult, err
 }

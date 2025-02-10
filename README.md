@@ -79,6 +79,11 @@ Check out the [`./examples`](./examples) directory.
 - [x] Get latest OHLCV
 - [x] Get historical OHLCV
 
+### Contracts
+- [x] List contracts platforms
+- [x] Get all contract addresses for a given platform
+- [x] Redirect to Ticker by contract address
+
 ### People
 
 - [x] Get people by ID

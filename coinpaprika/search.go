@@ -2,10 +2,10 @@ package coinpaprika
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // SearchService is used for search requests
+// API Documentation: https://api.coinpaprika.com/#tag/Search
 type SearchService service
 
 // SearchResult represents a result of search API endpoint.
@@ -34,8 +34,9 @@ type SearchOptions struct {
 
 // Search returns a list of currencies, exchanges, icos, people and tags for given query.
 func (s *SearchService) Search(options *SearchOptions) (searchResult *SearchResult, err error) {
-	url := fmt.Sprintf("%s/search", baseURL)
+	url := baseURL + "/search"
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
@@ -46,5 +47,6 @@ func (s *SearchService) Search(options *SearchOptions) (searchResult *SearchResu
 	}
 
 	err = json.Unmarshal(body, &searchResult)
+
 	return searchResult, err
 }
