@@ -31,6 +31,7 @@ type (
 		Tags           TagsService           // TagsService is used for getting tags information.
 		People         PeopleService         // PeopleService is used for getting people information.
 		Exchanges      ExchangesService      // ExchangesService is used for getting exchange information.
+		ChangeLog      ChangeLogService      // ChangeLogService is used for getting ChangeLog information.
 		Contracts      ContractsService      // ContractsService is used for getting contract information.
 	}
 )
@@ -78,6 +79,7 @@ func NewClient(httpClient *http.Client, opts ...ClientOptions) *Client {
 	c.Tags.httpClient = c.httpClient
 	c.People.httpClient = c.httpClient
 	c.Exchanges.httpClient = c.httpClient
+	c.ChangeLog.httpClient = c.httpClient
 	c.Contracts.httpClient = c.httpClient
 
 	return c

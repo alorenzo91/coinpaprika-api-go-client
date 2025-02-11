@@ -24,4 +24,21 @@ func main() {
 		fmt.Println("Rank:", *t.Rank)
 		fmt.Println("----")
 	}
+
+	changeLog, err := paprikaClient.ChangeLog.CoinsChangeLog(nil)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, c := range changeLog {
+		if c.OldID == nil || c.NewID == nil || c.CurrencyID == nil {
+			continue
+		}
+
+		fmt.Println("OldID:", *c.OldID)
+		fmt.Println("NewID:", *c.NewID)
+		fmt.Println("CurrencyID:", *c.CurrencyID)
+		fmt.Println("----")
+	}
 }

@@ -24,6 +24,7 @@ func main() {
 	}
 
 	fmt.Println("\nExchanges:")
+
 	for _, c := range searchResult.Exchanges {
 		fmt.Printf("Rank: %-4d Name: %-20s\n", *c.Rank, *c.Name)
 	}
