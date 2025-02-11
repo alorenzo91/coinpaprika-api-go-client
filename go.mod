@@ -1,4 +1,4 @@
-module github.com/coinpaprika/coinpaprika-api-go-client/v2
+module github.com/alorenzo91/coinpaprika-api-go-client/v2
 
 require (
 	github.com/google/go-querystring v1.1.0
