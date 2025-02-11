@@ -2,7 +2,6 @@ package coinpaprika
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // ChangeLogService provides methods for interacting with change log-related endpoints.
@@ -36,17 +35,20 @@ type ChangeLogOptions struct {
 //   - changelog: A slice of ChangeLog pointers containing the change log data.
 //   - err: An error if the request fails, the response cannot be unmarshaled, or the URL construction fails.
 func (s *ChangeLogService) CoinsChangeLog(options *ChangeLogOptions) (changelog []*ChangeLog, err error) {
-	url := fmt.Sprintf("%s/changelog/ids", baseURL)
+	url := baseURL + "/changelog/ids"
 	url, err = constructURL(url, options)
+
 	if err != nil {
 		return nil, err
 	}
 
 	body, err := sendGET(s.httpClient, url)
+
 	if err != nil {
 		return nil, err
 	}
 
 	err = json.Unmarshal(body, &changelog)
+
 	return changelog, err
 }
