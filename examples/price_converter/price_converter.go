@@ -14,6 +14,7 @@ func main() {
 		BaseCurrencyID: "btc-bitcoin", QuoteCurrencyID: "usd-us-dollars", Amount: 1.5,
 	}
 	result, err := paprikaClient.PriceConverter.PriceConverter(opts)
+
 	if err != nil {
 		panic(err)
 	}

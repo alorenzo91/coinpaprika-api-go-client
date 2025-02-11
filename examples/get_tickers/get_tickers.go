@@ -8,30 +8,31 @@ import (
 
 func main() {
 	ContractsList()
-	//paprikaClient := coinpaprika.NewClient(nil)
+	/*
+		paprikaClient := coinpaprika.NewClient(nil)
+		tickers, err := paprikaClient.Tickers.List(nil)
 
-	/*tickers, err := paprikaClient.Tickers.List(nil)
-	if err != nil {
-		panic(err)
-	}
-
-	for idx, t := range tickers {
-		if t.Name == nil || t.Symbol == nil || t.Rank == nil {
-			continue
+		if err != nil {
+			panic(err)
 		}
 
-		fmt.Println("Name:", *t.Name)
-		fmt.Println("Symbol:", *t.Symbol)
-		fmt.Println("Rank:", *t.Rank)
-		if quoteUSD, ok := t.Quotes["USD"]; ok {
-			fmt.Printf("Price: %.2f USD\n\n", *quoteUSD.Price)
-		}
+		for idx, t := range tickers {
+			if t.Name == nil || t.Symbol == nil || t.Rank == nil {
+				continue
+			}
 
-		if idx >= 2 {
-			break
-		}
-	}*/
+			fmt.Println("Name:", *t.Name)
+			fmt.Println("Symbol:", *t.Symbol)
+			fmt.Println("Rank:", *t.Rank)
+			if quoteUSD, ok := t.Quotes["USD"]; ok {
+				fmt.Printf("Price: %.2f USD\n\n", *quoteUSD.Price)
+			}
 
+			if idx >= 2 {
+				break
+			}
+		}
+	*/
 }
 
 func ContractsList() {
